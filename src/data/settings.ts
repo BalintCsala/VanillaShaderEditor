@@ -7,7 +7,7 @@ type SettingsApply = {
 }
 
 const SHADERS_PATH = "assets/minecraft/shaders/";
-const CONST_REGEX = /^\s*const\s+(\S+)\s+(\S+)\s*=;/;
+const CONST_REGEX = /^\s*const\s+(\S+)\s+(\S+)\s*=/;
 const DEFINE_REGEX = /^\s*(?:\/\/\s*)?#define\s+(\S+)/;
 
 function serializeValue(format: Format, value: any) {
