@@ -17,17 +17,17 @@ function ShaderEditor() {
 
     const onBack = useCallback(() => {
         let goBack = window.confirm("Are you sure you want to go back? You will lose all edits you made up to this point!");
-        if (!goBack)
+        if (!goBack) {
+            window.history.pushState("", document.title, `/${shader?.name}`);
             return;
+        }
 
         dispatch(setSelected(""));
-        window.history.back();
-    }, [dispatch]);
+    }, [dispatch, shader?.name]);
 
     useEffect(() => {
         const listener = (e: PopStateEvent) => {
             e.preventDefault();
-            e.stopPropagation();
             onBack();
         };
         window.addEventListener("popstate", listener);
