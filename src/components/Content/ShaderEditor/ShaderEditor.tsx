@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useEffect} from "react";
 import "./ShaderEditor.css";
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import {setSelected} from "../../../redux/shaderListSlice";
@@ -12,7 +12,22 @@ function ShaderEditor() {
     const dispatch = useAppDispatch();
     const {shaders, selected} = useAppSelector(state => state.shaderList);
     const shader = shaders.find(shader => shader.name === selected);
+    console.log(shader);
     const values = useAppSelector(state => state.settings);
+
+    const onBack = useCallback(() => {
+        let goBack = window.confirm("Are you sure you want to go back? You will lose all edits you made up to this point!");
+        if (!goBack)
+            return;
+
+        dispatch(setSelected(""));
+        window.history.back();
+    }, [dispatch]);
+
+    useEffect(() => {
+        window.addEventListener("popstate", onBack);
+        return () => window.removeEventListener("popstate", onBack);
+    }, [onBack]);
 
     if (typeof shader === "undefined") {
         return (
@@ -21,14 +36,6 @@ function ShaderEditor() {
             </div>
         );
     }
-
-    const onBack = () => {
-        let goBack = window.confirm("Are you sure you want to go back? You will lose all edits you made up to this point!");
-        if (!goBack)
-            return;
-
-        dispatch(setSelected(""));
-    };
 
     const onDownload = async () => {
         dispatch(startLoading("Applying settings"));

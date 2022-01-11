@@ -2,8 +2,9 @@ import React from "react";
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import ShaderListItem from "./ShaderListItem/ShaderListItem";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
-import {setShaders} from "../../../redux/shaderListSlice";
+import {setSelected, setShaders} from "../../../redux/shaderListSlice";
 import {ShaderData} from "../../../data/ShaderData";
+import {resetSettings} from "../../../redux/settingsSlice";
 
 const SHADERS_JSON_URL = "https://raw.githubusercontent.com/BalintCsala/ConfigurableVanillaShaders/main/shaders.json";
 
@@ -15,8 +16,18 @@ function ShaderList() {
         dispatch(startLoading("Loading shaders"));
         fetch(SHADERS_JSON_URL)
             .then(res => res.json())
-            .then(shaderData => {
-                dispatch(setShaders(shaderData as ShaderData[]));
+            .then(raw => {
+                const shaderData = raw as ShaderData[];
+                dispatch(setShaders(shaderData));
+                if (window.location.pathname !== "/") {
+                    const name = decodeURI(window.location.pathname.substring(1));
+                    const shader = shaderData.find(shader => shader.name === name);
+                    if (typeof shader !== "undefined") {
+                        dispatch(resetSettings(shader.settings));
+                        dispatch(setSelected(shader.name));
+                    }
+                }
+
                 dispatch(endLoading());
             });
     }

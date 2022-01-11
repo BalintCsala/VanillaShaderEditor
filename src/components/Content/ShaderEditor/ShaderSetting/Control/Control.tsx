@@ -23,7 +23,6 @@ function Control({setting, value, onChange}: Props) {
             );
             break;
         case Format.VEC2:
-            console.log(value);
             let vec2 = value as number[];
             inner = (
                 <>

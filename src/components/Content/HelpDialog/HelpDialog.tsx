@@ -21,7 +21,7 @@ function HelpDialog({setHelpDialog}: Props) {
                     If you find any issues with this site, please report using one of the following options:<br />
                     <br />
                     <span className="highlight"><i className="fas fa-envelope" /> Email: balintcsala@gmail.com</span><br />
-                    <i className="highlight fab fa-github" /> <a className="highlight" href="https://github.com/BalintCsala/VanillaShaderEditor/issues">GitHub issues page</a><br />
+                    <i className="highlight fab fa-github" /> <a target="_blank" className="highlight" href="https://github.com/BalintCsala/VanillaShaderEditor/issues" rel="noreferrer">GitHub issues page</a><br />
                     <span className="highlight"><i className="fab fa-discord" /> Discord: Bálint#1673</span>
                 </p>
                 <p>
