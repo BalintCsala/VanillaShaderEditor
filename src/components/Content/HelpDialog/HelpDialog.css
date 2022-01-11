@@ -1,0 +1,52 @@
+.help-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.help-dialog .content {
+    max-width: 50%;
+    padding: 1rem;
+    width: 30em;
+    background: var(--secondary-color);
+    position: relative;
+}
+
+.help-dialog .exit {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--highlight-color);
+    font-size: 2rem;
+    transition-duration: 0.3s;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.help-dialog .exit:hover {
+    background: var(--tertiary-color);
+    border-radius: 50%;
+}
+
+.help-dialog .title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.help-dialog p {
+    text-align: left;
+}
