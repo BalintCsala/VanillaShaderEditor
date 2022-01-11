@@ -8,8 +8,12 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/shader-editor",
         "destination": "/index.html"
+      },
+      {
+        "source": "**",
+        "function": "cors"
       }
     ]
   }
