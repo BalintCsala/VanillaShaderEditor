@@ -1,6 +1,6 @@
-import {Format, Setting, Type} from "./ShaderData";
+
 import JSZip, {JSZipObject} from "jszip";
-import {JSONType} from "./types";
+import {Format, JSONType, Setting, Type} from "./types";
 
 type SettingsApply = {
     [key in Type]: (setting: Setting, value: any, zip: JSZip) => Promise<JSZip>

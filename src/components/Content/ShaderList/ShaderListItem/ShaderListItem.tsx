@@ -1,6 +1,5 @@
 import React from "react";
 import "./ShaderListItem.css";
-import {ShaderData} from "../../../../data/ShaderData";
 import MissingThumbnail from "./missing_thumbnail.png";
 import {collectZip} from "../../../../data/collectZip";
 import {saveAs} from "file-saver";
@@ -8,6 +7,7 @@ import {useAppDispatch} from "../../../../redux/store";
 import {endLoading, startLoading} from "../../../../redux/loadingSlice";
 import {setSelected} from "../../../../redux/shaderListSlice";
 import {resetSettings} from "../../../../redux/settingsSlice";
+import {ShaderData} from "../../../../data/types";
 
 interface Props {
     data: ShaderData

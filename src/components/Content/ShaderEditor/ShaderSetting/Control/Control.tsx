@@ -1,6 +1,6 @@
 import React from "react";
 import "./Control.css";
-import {Format, Setting} from "../../../../../data/ShaderData";
+import {Format, Setting} from "../../../../../data/types";
 
 interface Props {
     setting: Setting;

@@ -33,7 +33,7 @@ function HelpDialog({setHelpDialog}: Props) {
                     send them a link to this site instead.
                 </p>
                 <p>
-                    If you are a shader developer and want your work to be featured on this site, start <a className="highlight" href="https://github.com/BalintCsala/ConfigurableVanillaShaders">here</a>.
+                    If you are a shader developer and want your work to be featured on this site, start <a target="_blank" className="highlight" href="https://github.com/BalintCsala/ConfigurableVanillaShaders" rel="noreferrer">here</a>.
                 </p>
                 <p>
                     Abusing this service will result in a permanent and irreversible IP ban.

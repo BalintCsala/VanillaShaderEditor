@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Setting} from "../data/ShaderData";
+import {Setting} from "../data/types";
 
 interface State {
     [key: string]: any;

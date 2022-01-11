@@ -1,6 +1,6 @@
 import JSZip from "jszip";
 
-const PROXY = "https://vanillashadereditor.web.app/"
+const PROXY = "https://us-central1-vanillashadereditor.cloudfunctions.net/cors/"
 
 export async function collectZip(url: string) {
     const isGithub = url.indexOf("github.com") !== -1;

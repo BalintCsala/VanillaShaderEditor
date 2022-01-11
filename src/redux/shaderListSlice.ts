@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ShaderData} from "../data/ShaderData";
+import {ShaderData} from "../data/types";
 
 interface State {
     selected: string,

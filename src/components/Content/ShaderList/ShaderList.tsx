@@ -3,8 +3,8 @@ import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import ShaderListItem from "./ShaderListItem/ShaderListItem";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
 import {setSelected, setShaders} from "../../../redux/shaderListSlice";
-import {ShaderData} from "../../../data/ShaderData";
 import {resetSettings} from "../../../redux/settingsSlice";
+import {ShaderData} from "../../../data/types";
 
 const SHADERS_JSON_URL = "https://raw.githubusercontent.com/BalintCsala/ConfigurableVanillaShaders/main/shaders.json";
 

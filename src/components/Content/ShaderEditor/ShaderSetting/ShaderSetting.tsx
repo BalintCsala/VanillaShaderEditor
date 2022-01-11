@@ -1,9 +1,9 @@
 import React from "react";
 import "./ShaderSetting.css";
-import {Setting} from "../../../../data/ShaderData";
 import {useAppDispatch, useAppSelector} from "../../../../redux/store";
 import Control from "./Control/Control";
 import {setValue} from "../../../../redux/settingsSlice";
+import {Setting} from "../../../../data/types";
 
 interface Props {
     data: Setting;
