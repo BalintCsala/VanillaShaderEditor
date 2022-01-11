@@ -1,0 +1,59 @@
+.control input[type=number] {
+    background: var(--tertiary-color);
+    color: white;
+    border: 0;
+    padding: 0.2rem;
+    font-family: "Fredoka One", sans-serif;
+    width: 7em;
+    height: 1.5em;
+    margin: 0.3em;
+    font-size: 1em;
+}
+
+.control input[type=checkbox] {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    border: 0;
+    color: white;
+    position: relative;
+}
+
+.control input[type=checkbox]::after {
+    content: "";
+    background-color: var(--tertiary-color);
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.control input[type=checkbox]:checked::before {
+    content: "✓";
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    top: -0.7rem;
+    left: 0;
+    color: white;
+    z-index: 3;
+}
+
+.control select {
+    background: var(--tertiary-color);
+    color: white;
+    min-width: 7em;
+    height: 1.5em;
+    font-family: "Fredoka One", sans-serif;
+    border: 0;
+    padding: 0.2rem;
+    font-size: 1em;
+    box-sizing: content-box;
+}

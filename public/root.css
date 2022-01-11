@@ -1,0 +1,12 @@
+:root {
+    --main-color: #041C32;
+    --secondary-color: #04293A;
+    --tertiary-color: #064663;
+    --highlight-color: #ECB365;
+    --text-color: white;
+}
+
+html, body, #root {
+    width: 100%;
+    min-height: 100%;
+}

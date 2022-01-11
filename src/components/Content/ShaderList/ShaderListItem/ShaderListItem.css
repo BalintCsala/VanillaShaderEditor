@@ -1,0 +1,63 @@
+.shader-list-item {
+    text-align: left;
+    display: flex;
+    height: 10em;
+    cursor: pointer;
+    border: 1px solid var(--tertiary-color);
+    margin-bottom: 0.5em;
+}
+
+.shader-list-item img {
+    display: block;
+    height: 10em;
+    width: 10em;
+    margin: 0 1em 0 0;
+}
+
+.shader-list-item .data-container {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.shader-list-item .name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.shader-list-item .description {
+    font-size: 1rem;
+}
+
+.shader-list-item .controls {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shader-list-item a:not(.creator), .shader-list-item button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5em;
+    color: var(--highlight-color);
+    background: var(--tertiary-color);
+    padding: 0.2em;
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+
+.shader-list-item .creator {
+    color: var(--highlight-color);
+}
+
+.shader-list-item a:hover, .shader-list-item button:hover {
+    background: var(--secondary-color);
+}

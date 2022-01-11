@@ -1,0 +1,18 @@
+.shader-setting {
+    border: 1px solid var(--tertiary-color);
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.shader-setting .name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.shader-setting .description {
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}

@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
+body {
+    background: var(--main-color);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+    width: 100%;
+    min-height: 100%;
+    color: var(--text-color);
+    font-family: "Fredoka One", sans-serif;
+    text-align: center;
+    padding: 1em;
+    box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.page-title {
+    font-size: 3em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.help {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    background: var(--tertiary-color);
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    color: var(--highlight-color);
+    transition-duration: 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.help.firstVisit {
+    animation: pulsing 1s infinite alternate ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes pulsing {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+.help:hover {
+    background: var(--secondary-color);
+}
+
+hr {
+    border-color: var(--highlight-color);
 }
