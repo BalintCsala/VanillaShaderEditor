@@ -29,7 +29,7 @@ function ShaderListItem({data}: Props) {
     const onEdit = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        window.history.pushState("abcd", document.title, `/${data.name}`);
+        window.history.pushState("", document.title, `/${data.name}`);
         dispatch(resetSettings(data.settings));
         dispatch(setSelected(data.name));
     };

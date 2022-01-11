@@ -12,7 +12,7 @@ function ShaderEditor() {
     const dispatch = useAppDispatch();
     const {shaders, selected} = useAppSelector(state => state.shaderList);
     const shader = shaders.find(shader => shader.name === selected);
-    console.log(shader);
+
     const values = useAppSelector(state => state.settings);
 
     const onBack = useCallback(() => {
@@ -25,8 +25,13 @@ function ShaderEditor() {
     }, [dispatch]);
 
     useEffect(() => {
-        window.addEventListener("popstate", onBack);
-        return () => window.removeEventListener("popstate", onBack);
+        const listener = (e: PopStateEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onBack();
+        };
+        window.addEventListener("popstate", listener);
+        return () => window.removeEventListener("popstate", listener);
     }, [onBack]);
 
     if (typeof shader === "undefined") {
