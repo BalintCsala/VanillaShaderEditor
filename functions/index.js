@@ -9,6 +9,6 @@ const corsProxy = require("cors-anywhere").createServer({
 });
 
 exports.cors = functions.https.onRequest((req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
+  req.url = req.url.replace("cors/", "");
   corsProxy.emit("request", req, res);
 });
