@@ -9,6 +9,10 @@ interface Props {
 }
 
 function Control({setting, value, onChange}: Props) {
+    if (typeof value === "undefined") {
+        value = setting.defaultValue;
+    }
+
     let inner;
     switch (setting.format) {
         default:

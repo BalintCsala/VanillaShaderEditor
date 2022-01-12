@@ -2,34 +2,17 @@ import React, {useRef} from "react";
 import "./ShaderList.css";
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import ShaderListItem from "./ShaderListItem/ShaderListItem";
-import {endLoading, startLoading} from "../../../redux/loadingSlice";
-import {setSelected, setShaders} from "../../../redux/shaderListSlice";
-import {resetSettings} from "../../../redux/settingsSlice";
+import {setShaders} from "../../../redux/shaderListSlice";
 import {ShaderData} from "../../../data/types";
-
-const SHADERS_JSON_URL = "https://raw.githubusercontent.com/BalintCsala/ConfigurableVanillaShaders/main/shaders.json";
 
 function ShaderList() {
     const dispatch = useAppDispatch();
-    const shaders = useAppSelector(state => state.shaderList.shaders);
+    const shaders = useAppSelector(state => state.shaderList);
     const developer = useAppSelector(state => state.developer);
     const fileRef = useRef<HTMLInputElement>(null);
 
     const onLoadShaders = () => {
         fileRef.current?.click();
-    };
-
-    const parseRawShaderData = (raw: any[]) => {
-        const shaderData = raw as ShaderData[];
-        dispatch(setShaders(shaderData));
-        if (window.location.pathname !== "/") {
-            const name = decodeURI(window.location.pathname.substring(1));
-            const shader = shaderData.find(shader => shader.name === name);
-            if (typeof shader !== "undefined") {
-                dispatch(resetSettings(shader.settings));
-                dispatch(setSelected(shader.name));
-            }
-        }
     };
 
     const onJSONSelected = () => {
@@ -39,21 +22,11 @@ function ShaderList() {
         const file = fileRef.current.files[0];
         const reader = new FileReader();
         reader.addEventListener("load", e => {
-            const content = (e.target ? JSON.parse(e.target.result as string) : []);
-            parseRawShaderData(content);
+            const shaderData = (e.target ? JSON.parse(e.target.result as string) : []);
+            dispatch(setShaders(shaderData as ShaderData[]));
         });
         reader.readAsText(file);
     };
-
-    if (shaders.length === 0) {
-        dispatch(startLoading("Loading shaders"));
-        fetch(SHADERS_JSON_URL)
-            .then(res => res.json())
-            .then(raw => {
-                parseRawShaderData(raw);
-                dispatch(endLoading());
-            });
-    }
 
     return (
         <div className="shader-list">

@@ -5,9 +5,9 @@ import {collectZip} from "../../../../data/collectZip";
 import {saveAs} from "file-saver";
 import {useAppDispatch} from "../../../../redux/store";
 import {endLoading, startLoading} from "../../../../redux/loadingSlice";
-import {setSelected} from "../../../../redux/shaderListSlice";
 import {resetSettings} from "../../../../redux/settingsSlice";
 import {ShaderData} from "../../../../data/types";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
     data: ShaderData
@@ -15,6 +15,7 @@ interface Props {
 
 function ShaderListItem({data}: Props) {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const onDownload = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -29,9 +30,8 @@ function ShaderListItem({data}: Props) {
     const onEdit = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        window.history.pushState("", document.title, `/${data.name}`);
         dispatch(resetSettings(data.settings));
-        dispatch(setSelected(data.name));
+        navigate(`/${data.name}`);
     };
 
     return (

@@ -16,7 +16,7 @@ function DeveloperConfirm({confirm, cancel}: Props) {
                 </span>
                 <br/>
                 <span className="description">
-                    Do you wish to enable developer mode? This will only let you sideload shaders.json files.
+                    Do you wish to enable developer mode? This will let you test shaders.json files.
                 </span>
                 <div className="buttons">
                     <button onClick={cancel} className="cancel-button">Cancel</button>

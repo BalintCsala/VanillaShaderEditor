@@ -1,4 +1,3 @@
-
 import JSZip, {JSZipObject} from "jszip";
 import {Format, JSONType, Setting, Type} from "./types";
 
