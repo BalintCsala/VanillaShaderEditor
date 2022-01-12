@@ -15,13 +15,15 @@ function ShaderEditor() {
 
     const values = useAppSelector(state => state.settings);
 
-    const onBack = useCallback(() => {
+    const onBack = useCallback((backButton = false) => {
         let goBack = window.confirm("Are you sure you want to go back? You will lose all edits you made up to this point!");
         if (!goBack) {
             window.history.pushState("", document.title, `/${shader?.name}`);
             return;
         }
-
+        if (backButton) {
+            window.history.back();
+        }
         dispatch(setSelected(""));
     }, [dispatch, shader?.name]);
 
@@ -58,7 +60,7 @@ function ShaderEditor() {
     return (
         <div className="shader-editor">
             <div className="top-row">
-                <button onClick={onBack} title="Back"><i className="fas fa-arrow-left" /></button>
+                <button onClick={() => onBack(true)} title="Back"><i className="fas fa-arrow-left" /></button>
                 <span className="name">{shader.name}</span>
                 <button onClick={onDownload} title="Download"><i className="fas fa-download" /></button>
             </div>
