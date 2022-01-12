@@ -3,12 +3,14 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {shaderListReducer} from "./shaderListSlice";
 import {loadingReducer} from "./loadingSlice";
 import {settingsReducer} from "./settingsSlice";
+import {developerReducer} from "./developerSlice";
 
 const store = configureStore({
     reducer: {
         loading: loadingReducer,
         shaderList: shaderListReducer,
         settings: settingsReducer,
+        developer: developerReducer,
     },
 });
 

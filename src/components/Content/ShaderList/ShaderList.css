@@ -1,0 +1,32 @@
+.sideloader {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 0.5em;
+    background: var(--tertiary-color);
+    height: 1.3rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+}
+
+.sideloader button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2.5rem;
+    border-radius: 50%;
+    border: 0;
+    background: var(--tertiary-color);
+    margin-top: -2rem;
+    margin-right: -0.5rem;
+    color: var(--highlight-color);
+    transition-duration: 0.3s;
+}
+
+.sideloader button:hover {
+    color: #CA9143;
+}
+
+.sideloader .file {
+    display: none;
+}

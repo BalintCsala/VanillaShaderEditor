@@ -16,17 +16,25 @@ body {
     font-size: 3em;
 }
 
-.help {
+.page-controls {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.page-controls button {
+    font-size: 1.8rem;
     background: var(--tertiary-color);
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border: none;
     color: var(--highlight-color);
     transition-duration: 0.3s;
+    margin-left: 0.3em;
+}
+
+.page-controls button:hover {
+    background: var(--secondary-color);
 }
 
 .help.firstVisit {
@@ -40,10 +48,6 @@ body {
     100% {
         transform: scale(1.2);
     }
-}
-
-.help:hover {
-    background: var(--secondary-color);
 }
 
 hr {

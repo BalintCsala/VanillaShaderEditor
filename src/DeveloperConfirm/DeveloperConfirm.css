@@ -1,0 +1,51 @@
+.confirm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm .content {
+    width: 30em;
+    max-width: 50%;
+    background: var(--secondary-color);
+    padding: 1em;
+}
+
+.confirm .title {
+    display: block;
+    font-size: 2rem;
+}
+
+.confirm .description {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.confirm .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm button {
+    width: 5em;
+    height: 1.5em;
+    font-size: 1.5rem;
+    border: 0;
+    background: var(--tertiary-color);
+    color: white;
+    font-family: "Fredoka One", sans-serif;
+    transition-duration: 0.3s;
+}
+
+.confirm button:hover {
+    background: var(--main-color);
+}
