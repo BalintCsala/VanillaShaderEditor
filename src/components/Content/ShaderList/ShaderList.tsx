@@ -6,7 +6,7 @@ import {setSelected, setShaders} from "../../../redux/shaderListSlice";
 import {resetSettings} from "../../../redux/settingsSlice";
 import {ShaderData} from "../../../data/types";
 
-const SHADERS_JSON_URL = "https://raw.githubusercontent.com/fayer3/ConfigurableVanillaShaders/main/shaders.json";
+const SHADERS_JSON_URL = "https://raw.githubusercontent.com/BalintCsala/ConfigurableVanillaShaders/main/shaders.json";
 
 function ShaderList() {
     const dispatch = useAppDispatch();
