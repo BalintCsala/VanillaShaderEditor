@@ -33,9 +33,33 @@ export interface Setting {
     name: string;
     displayName?: string;
     format: Format;
-    enumValues?: EnumValue[];
     defaultValue: any;
     description: string;
+}
+
+export interface EnumSetting extends Setting {
+    enumValues: EnumValue[];
+}
+
+export interface FloatSetting extends Setting {
+    min?: number;
+    max?: number;
+    step?: number;
+}
+
+export interface VecSetting extends Setting {
+    min?: number[];
+    max?: number[];
+    step?: number[];
+}
+
+export interface IntegerSetting extends Setting {
+    min?: number;
+    max?: number;
+}
+
+export interface BooleanSetting extends Setting {
+
 }
 
 export interface ShaderData {
