@@ -119,7 +119,7 @@ function Control({setting, value, onChange}: Props) {
         );
     } else {
         const floatSetting = setting as FloatSetting;
-        let float = (tempValue !== null ? Math.round(parseFloat(tempValue) * 1000) / 1000 : value) as number;
+        let float = (tempValue !== null ? parseFloat(tempValue) : value) as number;
         if (isNaN(float))
             float = floatSetting.min ?? 0;
         inner = (
@@ -130,8 +130,11 @@ function Control({setting, value, onChange}: Props) {
                        onChange={e => setTempValue(e.target.value)}
                        onBlur={() => {
                            float = Math.min(Math.max(float, floatSetting.min ?? -Infinity), floatSetting.max ?? Infinity);
-                           if (floatSetting.step)
-                               float = Math.round(float / floatSetting.step) * floatSetting.step;
+                           if (floatSetting.step) {
+                               const anchor = floatSetting.min ?? 0;
+                               float = Math.round((float - anchor) / floatSetting.step) * floatSetting.step + anchor;
+                           }
+                           float = Math.round(float * 1000) / 1000;
                            onChange(float);
                            setTempValue(null);
                        }}/>
