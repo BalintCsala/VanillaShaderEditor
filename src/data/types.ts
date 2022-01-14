@@ -69,6 +69,7 @@ export interface ShaderData {
     creator: string;
     creatorLink?: string;
     description: string;
+    longDescription?: string;
     thumbnail?: string;
     settings: Setting[];
 }

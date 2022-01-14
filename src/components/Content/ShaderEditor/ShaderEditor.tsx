@@ -57,6 +57,8 @@ function ShaderEditor() {
             .then(() => dispatch(endLoading()));
     };
 
+    const description = shader.longDescription ?? shader.description;
+
     return (
         <div className="shader-editor">
             <div className="top-row">
@@ -64,6 +66,15 @@ function ShaderEditor() {
                 <span className="name">{shader.name}</span>
                 <button onClick={onDownload} title="Download"><i className="fas fa-download" /></button>
             </div>
+            <div className="description">
+                <img alt="thumbnail" src={shader.thumbnail}/>
+                {description.split("\\n").map((line, i) => (
+                    <span key={i}>
+                        {line}<br />
+                    </span>
+                ))}
+            </div>
+            <span className="settings-title">Settings</span>
             {shader.settings.map((setting, i) => <ShaderSetting key={i} data={setting} />)}
         </div>
     );
