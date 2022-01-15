@@ -111,7 +111,7 @@ export const settingApply: SettingsApply = {
                 if (match !== null && match.length > 0) {
                     const format = match[1];
                     const name = match[2];
-                    if (format === setting.format && name === setting.name) {
+                    if ((format === setting.format || (setting.format === Format.ENUM && format === "float")) && name === setting.name) {
                         lines[i] = `const ${format} ${name} = ${serializeValue(setting.format, value)};`;
                         changed = true;
                     }
