@@ -7,6 +7,7 @@ import {settingApply} from "../../../data/settings";
 import {saveAs} from "file-saver";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
 import {useNavigate, useParams} from "react-router-dom";
+import {resetSettings} from "../../../redux/settingsSlice";
 
 function ShaderEditor() {
     const dispatch = useAppDispatch();
@@ -16,6 +17,9 @@ function ShaderEditor() {
     const shader = shaders.find(shader => shader.name === params.shader);
 
     const values = useAppSelector(state => state.settings);
+    if (Object.keys(values).length === 0 && typeof shader !== "undefined") {
+        dispatch(resetSettings(shader?.settings ?? []))
+    }
 
     const onBack = useCallback(() => {
         let goBack = window.confirm("Are you sure you want to go back? You will lose all edits you made up to this point!");
@@ -47,7 +51,6 @@ function ShaderEditor() {
     const onDownload = async () => {
         dispatch(startLoading("Applying settings"));
         let zip = await collectZip(shader.url);
-
         for (let setting of shader.settings) {
             zip = await settingApply[setting.type](setting, values[setting.name], zip);
         }

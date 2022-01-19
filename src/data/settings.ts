@@ -1,10 +1,6 @@
 import JSZip, {JSZipObject} from "jszip";
 import {Format, JSONType, Setting, Type} from "./types";
 
-type SettingsApply = {
-    [key in Type]: (setting: Setting, value: any, zip: JSZip) => Promise<JSZip>
-}
-
 const SHADERS_PATH = "assets/minecraft/shaders/";
 const CONST_REGEX = /^\s*const\s+(\S+)\s+(\S+)\s*=/;
 const DEFINE_REGEX = /^\s*(?:\/\/\s*)?#define\s+(\S+)/;
@@ -30,7 +26,7 @@ function serializeValue(format: Format, value: any) {
     }
 }
 
-export const settingApply: SettingsApply = {
+export const settingApply = {
     [Type.UNIFORM]: async (setting: Setting, value: any, zip: JSZip) => {
         let files: [string, JSZipObject][] = [];
         zip.folder(SHADERS_PATH)?.forEach((relativePath, file) => {
