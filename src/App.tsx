@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import {useAppDispatch, useAppSelector} from "./redux/store";
-import Spinner from "./components/common/Spinner/Spinner";
+import Loader from "./components/common/Loader/Loader";
 import Content from "./components/Content/Content";
 import HelpDialog from "./components/Content/HelpDialog/HelpDialog";
 import DeveloperConfirm from "./DeveloperConfirm/DeveloperConfirm";
@@ -48,7 +48,7 @@ function App() {
             <hr/>
             <Content/>
             {
-                loading ? <Spinner/> : null
+                loading ? <Loader/> : null
             }
             {helpDialog ? <HelpDialog setHelpDialog={setHelpDialog}/> : null}
             {developerConfirm ? <DeveloperConfirm confirm={onDeveloperConfirm} cancel={onDeveloperCancel}/> : null}

@@ -1,6 +1,14 @@
 import JSZip from "jszip";
 
-const PROXY = "https://vanillashadereditor.web.app/cors/"
+const PROXY = "https://vanillashadereditor.web.app/cors/";
+
+export async function proxyFetch(url: string) {
+    return fetch(PROXY + url.replace("https://", ""), {
+        headers: {
+            "x-requested-with": "aaa",
+        },
+    })
+}
 
 export async function collectZip(url: string) {
     const isGithub = url.indexOf("github.com") !== -1;
@@ -9,11 +17,7 @@ export async function collectZip(url: string) {
     if (isGithub) {
         url += "/archive/refs/heads/main.zip";
     }
-    const zip = await fetch(PROXY + url.replace("https://", ""), {
-        headers: {
-            "x-requested-with": "aaa"
-        }
-    })
+    const zip = await proxyFetch(url)
         .then(res => res.blob())
         .then(JSZip.loadAsync);
 

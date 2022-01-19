@@ -1,0 +1,13 @@
+.placeholder {
+    height: 1em;
+    animation: color-change 1s infinite alternate;
+}
+
+@keyframes color-change {
+    from {
+      background: var(--secondary-color);
+    }
+    to {
+        background: var(--tertiary-color);
+    }
+}

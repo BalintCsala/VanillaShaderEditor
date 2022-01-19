@@ -73,3 +73,8 @@ export interface ShaderData {
     thumbnail?: string;
     settings: Setting[];
 }
+
+export interface ShaderDataLink {
+    name: string;
+    settingsLink: string;
+}

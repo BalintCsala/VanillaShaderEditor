@@ -8,6 +8,8 @@ import {saveAs} from "file-saver";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
 import {useNavigate, useParams} from "react-router-dom";
 import {resetSettings} from "../../../redux/settingsSlice";
+import Loader from "../../common/Loader/Loader";
+import {ShaderData} from "../../../data/types";
 
 function ShaderEditor() {
     const dispatch = useAppDispatch();
@@ -15,11 +17,7 @@ function ShaderEditor() {
     const navigate = useNavigate();
     const shaders = useAppSelector(state => state.shaderList);
     const shader = shaders.find(shader => shader.name === params.shader);
-
     const values = useAppSelector(state => state.settings);
-    if (Object.keys(values).length === 0 && typeof shader !== "undefined") {
-        dispatch(resetSettings(shader?.settings ?? []))
-    }
 
     const onBack = useCallback(() => {
         let goBack = window.confirm("Are you sure you want to go back? You will lose all edits you made up to this point!");
@@ -40,7 +38,11 @@ function ShaderEditor() {
         return () => window.removeEventListener("popstate", listener);
     }, [navigate, shader?.name, onBack]);
 
-    if (typeof shader === "undefined") {
+    if (typeof shader !== "undefined" && shader.hasOwnProperty("settingsLink")) {
+
+
+        return <Loader />;
+    } else if (typeof shader === "undefined") {
         return (
             <div className="shader-editor">
                 <span>Something went wrong :(</span>
@@ -48,10 +50,17 @@ function ShaderEditor() {
         );
     }
 
+    const shaderData = shader as ShaderData;
+
+    if (Object.keys(values).length === 0 && typeof shader !== "undefined") {
+        dispatch(resetSettings(shaderData.settings ?? []))
+    }
+
+
     const onDownload = async () => {
         dispatch(startLoading("Applying settings"));
-        let zip = await collectZip(shader.url);
-        for (let setting of shader.settings) {
+        let zip = await collectZip(shaderData.url);
+        for (let setting of shaderData.settings) {
             zip = await settingApply[setting.type](setting, values[setting.name], zip);
         }
 
@@ -60,7 +69,7 @@ function ShaderEditor() {
             .then(() => dispatch(endLoading()));
     };
 
-    const description = shader.longDescription ?? shader.description;
+    const description = shaderData.longDescription ?? shaderData.description;
 
     return (
         <div className="shader-editor">
@@ -70,7 +79,7 @@ function ShaderEditor() {
                 <button onClick={onDownload} title="Download"><i className="fas fa-download" /></button>
             </div>
             <div className="description">
-                <img alt="thumbnail" src={shader.thumbnail}/>
+                <img alt="thumbnail" src={shaderData.thumbnail}/>
                 {description.split("\\n").map((line, i) => (
                     <span key={i}>
                         {line}<br />
@@ -78,7 +87,7 @@ function ShaderEditor() {
                 ))}
             </div>
             <span className="settings-title">Settings</span>
-            {shader.settings.map((setting, i) => <ShaderSetting key={i} data={setting} />)}
+            {shaderData.settings.map((setting, i) => <ShaderSetting key={i} data={setting} />)}
         </div>
     );
 }

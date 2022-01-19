@@ -7,11 +7,18 @@
     margin-bottom: 0.5em;
 }
 
-.shader-list-item img {
+
+.shader-list-item .thumbnail {
     display: block;
     height: 10em;
     width: 10em;
     margin: 0 1em 0 0;
+}
+
+.shader-list-item .thumbnail .spinner {
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
+    margin: 0.5em;
 }
 
 .shader-list-item .data-container {
