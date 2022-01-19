@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./ShaderListItem.css";
 import MissingThumbnail from "./missing_thumbnail.png";
-import {collectZip, proxyFetch} from "../../../../data/collectZip";
+import {collectZip} from "../../../../data/collectZip";
 import {saveAs} from "file-saver";
 import {useAppDispatch} from "../../../../redux/store";
 import {endLoading, startLoading} from "../../../../redux/loadingSlice";
@@ -23,7 +23,7 @@ function ShaderListItem({data}: Props) {
 
     if (!isDownloading && data.hasOwnProperty("settingsLink")) {
         const settingsData = data as ShaderDataLink;
-        proxyFetch(settingsData.settingsLink ?? "")
+        fetch(settingsData.settingsLink ?? "")
             .then(response => response.json())
             .then(settings => {
                 dispatch(setShader(settings as ShaderData));
