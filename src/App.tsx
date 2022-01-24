@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from "./redux/store";
 import Loader from "./components/common/Loader/Loader";
 import Content from "./components/Content/Content";
 import HelpDialog from "./components/Content/HelpDialog/HelpDialog";
-import DeveloperConfirm from "./DeveloperConfirm/DeveloperConfirm";
+import DeveloperConfirm from "./components/DeveloperConfirm/DeveloperConfirm";
 import {setDeveloper} from "./redux/developerSlice";
 
 function App() {

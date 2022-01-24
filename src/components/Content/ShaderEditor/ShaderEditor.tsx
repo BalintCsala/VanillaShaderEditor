@@ -2,14 +2,15 @@ import React, {useCallback, useEffect} from "react";
 import "./ShaderEditor.css";
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import ShaderSetting from "./ShaderSetting/ShaderSetting";
-import {collectZip} from "../../../data/collectZip";
+import {collectZip, proxyFetch} from "../../../data/collectZip";
 import {settingApply} from "../../../data/settings";
 import {saveAs} from "file-saver";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
 import {useNavigate, useParams} from "react-router-dom";
 import {resetSettings} from "../../../redux/settingsSlice";
 import Loader from "../../common/Loader/Loader";
-import {ShaderData} from "../../../data/types";
+import {ShaderData, ShaderDataLink} from "../../../data/types";
+import { setShader } from "../../../redux/shaderListSlice";
 
 function ShaderEditor() {
     const dispatch = useAppDispatch();
@@ -34,6 +35,13 @@ function ShaderEditor() {
             navigate(`/${shader?.name}`);
             onBack();
         };
+        if (typeof shader !== "undefined" && shader.hasOwnProperty("settingsLink")) {
+            const externalShaderData = shader as ShaderDataLink;
+            proxyFetch(externalShaderData.settingsLink)
+                .then(res => res.json())
+                .then(shaderData => dispatch(setShader(shaderData)))
+        }
+
         window.addEventListener("popstate", listener);
         return () => window.removeEventListener("popstate", listener);
     }, [navigate, shader?.name, onBack]);
