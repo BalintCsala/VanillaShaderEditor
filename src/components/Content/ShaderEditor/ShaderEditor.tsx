@@ -7,10 +7,10 @@ import {settingApply} from "../../../data/settings";
 import {saveAs} from "file-saver";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
 import {useNavigate, useParams} from "react-router-dom";
-import {resetSettings} from "../../../redux/settingsSlice";
+import {loadSettings, resetSettings} from "../../../redux/settingsSlice";
 import Loader from "../../common/Loader/Loader";
 import {ShaderData, ShaderDataLink} from "../../../data/types";
-import { setShader } from "../../../redux/shaderListSlice";
+import {setShader} from "../../../redux/shaderListSlice";
 
 function ShaderEditor() {
     const dispatch = useAppDispatch();
@@ -47,8 +47,6 @@ function ShaderEditor() {
     }, [dispatch, shader, navigate, shader?.name, onBack]);
 
     if (typeof shader !== "undefined" && shader.hasOwnProperty("settingsLink")) {
-
-
         return <Loader />;
     } else if (typeof shader === "undefined") {
         return (
@@ -61,9 +59,32 @@ function ShaderEditor() {
     const shaderData = shader as ShaderData;
 
     if (Object.keys(values).length === 0 && typeof shader !== "undefined") {
-        dispatch(resetSettings(shaderData.settings ?? []))
+        dispatch(resetSettings(shaderData.settings ?? []));
     }
 
+    const onLoad = async () => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.addEventListener("change", e => {
+            const targ = e.target as HTMLInputElement;
+            const fileReader = new FileReader();
+            const file = (targ.files ?? [])[0];
+            if (file === null)
+                return;
+            fileReader.readAsText(file);
+            fileReader.onload = e => {
+                console.log(e.target?.result);
+                dispatch(loadSettings(JSON.parse(e.target?.result as string)));
+            };
+        });
+        input.click();
+    };
+
+    const onSave = async () => {
+        let saved = JSON.stringify(values);
+        let blob = new Blob([saved], { type: "text/plain" });
+        saveAs(blob, shader.name + ".json");
+    };
 
     const onDownload = async () => {
         dispatch(startLoading("Applying settings"));
@@ -82,15 +103,19 @@ function ShaderEditor() {
     return (
         <div className="shader-editor">
             <div className="top-row">
-                <button onClick={onBack} title="Back"><i className="fas fa-arrow-left" /></button>
+                <button onClick={onBack} title="Back"><i className="fas fa-arrow-left"/></button>
                 <span className="name">{shader.name}</span>
-                <button onClick={onDownload} title="Download"><i className="fas fa-download" /></button>
+                <div className="editor-controls">
+                    <button onClick={onLoad} title="Load settings"><i className="fas fa-upload"/></button>
+                    <button onClick={onSave} title="Save settings"><i className="fas fa-save"/></button>
+                    <button onClick={onDownload} title="Download"><i className="fas fa-download"/></button>
+                </div>
             </div>
             <div className="description">
                 <img alt="thumbnail" src={shaderData.thumbnail}/>
                 {description.split("\\n").map((line, i) => (
                     <span key={i}>
-                        {line}<br />
+                        {line}<br/>
                     </span>
                 ))}
             </div>
