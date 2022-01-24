@@ -44,7 +44,7 @@ function ShaderEditor() {
 
         window.addEventListener("popstate", listener);
         return () => window.removeEventListener("popstate", listener);
-    }, [navigate, shader?.name, onBack]);
+    }, [dispatch, navigate, shader?.name, onBack]);
 
     if (typeof shader !== "undefined" && shader.hasOwnProperty("settingsLink")) {
 
