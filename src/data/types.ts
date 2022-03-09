@@ -15,6 +15,7 @@ export enum Format {
     VEC4 = "vec4",
     INTEGER = "int",
     BOOLEAN = "bool",
+    COLOR = "color"
 }
 
 export enum Type {

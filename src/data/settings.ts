@@ -14,6 +14,7 @@ function serializeValue(format: Format, value: any) {
             const vec2 = value as number[];
             return `vec2(${vec2[0]}, ${vec2[1]})`;
         case Format.VEC3:
+        case Format.COLOR:
             const vec3 = value as number[];
             return `vec3(${vec3[0]}, ${vec3[1]}, ${vec3[2]})`;
         case Format.VEC4:
@@ -107,7 +108,7 @@ export const settingApply = {
                 if (match !== null && match.length > 0) {
                     const format = match[1];
                     const name = match[2];
-                    if ((format === setting.format || (setting.format === Format.ENUM && format === "float")) && name === setting.name) {
+                    if ((format === setting.format || (setting.format === Format.ENUM && format === "float") || (format === "vec3" && setting.format === Format.COLOR)) && name === setting.name) {
                         lines[i] = `const ${format} ${name} = ${serializeValue(setting.format, value)};`;
                         changed = true;
                     }

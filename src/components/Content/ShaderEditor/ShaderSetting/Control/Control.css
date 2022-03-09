@@ -57,3 +57,16 @@
     font-size: 1em;
     box-sizing: content-box;
 }
+
+.control input[type=color] {
+    width: 10em;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.control input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.control input[type="color"]::-webkit-color-swatch {
+    border: 3px solid var(--tertiary-color);
+}
