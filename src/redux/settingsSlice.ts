@@ -21,9 +21,12 @@ export const settingsSlice = createSlice({
         setValue: (state, action: PayloadAction<[string, any]>) => {
             state[action.payload[0]] = action.payload[1];
         },
+        loadSettings: (state, action: PayloadAction<{[key:string]: any}>) => {
+            return action.payload;
+        }
     }
 })
 
-export const {resetSettings, setValue} = settingsSlice.actions;
+export const {resetSettings, setValue, loadSettings} = settingsSlice.actions;
 
 export const settingsReducer = settingsSlice.reducer;

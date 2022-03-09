@@ -73,7 +73,7 @@ export const settingApply = {
                     const name = match[1];
                     if (name === setting.name) {
                         if (setting.format === Format.BOOLEAN) {
-                            lines[i] = `${(value as boolean) ? "// "  : ""}#define ${name}`;
+                            lines[i] = `${(value as boolean) ? ""  : "// "}#define ${name}`;
                         } else {
                             lines[i] = `#define ${name} ${serializeValue(setting.format, value)}`;
                         }

@@ -37,6 +37,14 @@
     margin-right: 0.5em;
 }
 
+.editor-controls {
+    display: flex;
+}
+
+.editor-controls button {
+    margin-left: 0.4em;
+}
+
 .shader-editor button:hover {
     background: var(--secondary-color);
 }
