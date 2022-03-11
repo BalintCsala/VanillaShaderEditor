@@ -36,7 +36,7 @@ function App() {
 
     return (
         <div className="app">
-            <span className="page-title">Vanilla Shader Editor</span>
+            <a href="/" className="page-title">Vanilla Shader Editor</a>
             <div className="page-controls">
                 {!developer ? <button onClick={onDeveloper} className="developer" title="developer">
                     <i className="fas fa-wrench"/>
