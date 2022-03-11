@@ -51,7 +51,8 @@ function ShaderEditor() {
     } else if (typeof shader === "undefined") {
         return (
             <div className="shader-editor">
-                <span>Something went wrong :(</span>
+                <span>Something went wrong :(</span><br />
+                <a href="/">Back to the home page</a>
             </div>
         );
     }
@@ -121,6 +122,7 @@ function ShaderEditor() {
             </div>
             <span className="settings-title">Settings</span>
             {shaderData.settings.map((setting, i) => <ShaderSetting key={i} data={setting} />)}
+            <button onClick={onDownload} className="download-button"><i className="fas fa-download" /> Download shader</button>
         </div>
     );
 }

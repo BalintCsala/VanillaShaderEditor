@@ -55,3 +55,10 @@
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
+
+.shader-editor .download-button {
+    margin: auto;
+    width: auto;
+    padding: 0.5em;
+    height: auto;
+}
