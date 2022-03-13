@@ -7,7 +7,6 @@ const DEFINE_REGEX = /^\s*(?:\/\/\s*)?#define\s+(\S+)/;
 
 function serializeValue(format: Format, value: any) {
     switch (format) {
-        case Format.ENUM:
         case Format.FLOAT:
             return (value as number).toFixed(8);
         case Format.VEC2:
@@ -21,6 +20,7 @@ function serializeValue(format: Format, value: any) {
             const vec4 = value as number[];
             return `vec4(${vec4[0]}, ${vec4[1]}, ${vec4[2]}, ${vec4[3]})`;
         case Format.INTEGER:
+        case Format.ENUM:
             return (value as number).toFixed(0);
         case Format.BOOLEAN:
             return (value as boolean) ? "true" : "false";
