@@ -74,7 +74,6 @@ function ShaderEditor() {
                 return;
             fileReader.readAsText(file);
             fileReader.onload = e => {
-                console.log(e.target?.result);
                 dispatch(loadSettings(JSON.parse(e.target?.result as string)));
             };
         });
