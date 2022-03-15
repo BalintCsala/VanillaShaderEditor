@@ -21,7 +21,7 @@ export enum Format {
 export enum Type {
     UNIFORM = "uniform",
     CONSTANT = "constant",
-    DEFINE = "define",
+    DEFINE = "define"
 }
 
 interface EnumValue {
@@ -63,6 +63,16 @@ export interface BooleanSetting extends Setting {
 
 }
 
+export interface StringReplace {
+    regex: string,
+    with: string,
+    mapping?: {
+        [key: string]: {
+            [key: string]: string
+        }
+    }
+}
+
 export interface ShaderData {
     url: string;
     link?: string;
@@ -73,6 +83,7 @@ export interface ShaderData {
     longDescription?: string;
     thumbnail?: string;
     settings: Setting[];
+    stringReplace: StringReplace[];
 }
 
 export interface ShaderDataLink {
