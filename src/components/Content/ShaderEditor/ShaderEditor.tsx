@@ -94,7 +94,7 @@ function ShaderEditor() {
             zip = await settingApply[setting.type](setting, values[setting.name], zip);
         }
 
-        for (let stringReplace of shaderData.stringReplace) {
+        for (let stringReplace of shaderData.stringReplace ?? []) {
             zip = await applyStringReplace(stringReplace, values, zip);
         }
 

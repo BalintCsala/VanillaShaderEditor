@@ -83,7 +83,7 @@ export interface ShaderData {
     longDescription?: string;
     thumbnail?: string;
     settings: Setting[];
-    stringReplace: StringReplace[];
+    stringReplace?: StringReplace[];
 }
 
 export interface ShaderDataLink {
