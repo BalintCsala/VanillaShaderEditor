@@ -25,22 +25,6 @@ body {
     right: 1.5rem;
 }
 
-.page-controls button {
-    font-size: 1.8rem;
-    background: var(--tertiary-color);
-    width: 2.5rem;
-    height: 2.5rem;
-    border: none;
-    color: var(--highlight-color);
-    transition-duration: 0.3s;
-    margin-left: 0.3em;
-    cursor: pointer;
-}
-
-.page-controls button:hover {
-    background: var(--secondary-color);
-}
-
 .help.firstVisit {
     animation: pulsing 1s infinite alternate ease-in-out;
 }

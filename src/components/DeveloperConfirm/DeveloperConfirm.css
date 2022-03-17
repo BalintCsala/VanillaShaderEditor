@@ -34,18 +34,3 @@
     display: flex;
     justify-content: space-around;
 }
-
-.confirm button {
-    width: 5em;
-    height: 1.5em;
-    font-size: 1.5rem;
-    border: 0;
-    background: var(--tertiary-color);
-    color: white;
-    font-family: "Fredoka One", sans-serif;
-    transition-duration: 0.3s;
-}
-
-.confirm button:hover {
-    background: var(--main-color);
-}

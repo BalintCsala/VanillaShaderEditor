@@ -11,6 +11,7 @@ import {loadSettings, resetSettings} from "../../../redux/settingsSlice";
 import Loader from "../../common/Loader/Loader";
 import {ShaderData, ShaderDataLink} from "../../../data/types";
 import {setShader} from "../../../redux/shaderListSlice";
+import {Button} from "../../common/Button/Button";
 
 function ShaderEditor() {
     const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ function ShaderEditor() {
             const externalShaderData = shader as ShaderDataLink;
             proxyFetch(externalShaderData.settingsLink)
                 .then(res => res.json())
-                .then(shaderData => dispatch(setShader(shaderData)))
+                .then(shaderData => dispatch(setShader(shaderData)));
         }
 
         window.addEventListener("popstate", listener);
@@ -47,11 +48,11 @@ function ShaderEditor() {
     }, [dispatch, shader, navigate, shader?.name, onBack]);
 
     if (typeof shader !== "undefined" && shader.hasOwnProperty("settingsLink")) {
-        return <Loader />;
+        return <Loader/>;
     } else if (typeof shader === "undefined") {
         return (
             <div className="shader-editor">
-                <span>Something went wrong :(</span><br />
+                <span>Something went wrong :(</span><br/>
                 <a href="/">Back to the home page</a>
             </div>
         );
@@ -83,7 +84,7 @@ function ShaderEditor() {
 
     const onSave = async () => {
         let saved = JSON.stringify(values);
-        let blob = new Blob([saved], { type: "text/plain" });
+        let blob = new Blob([saved], {type: "text/plain"});
         saveAs(blob, shader.name + ".json");
     };
 
@@ -104,12 +105,12 @@ function ShaderEditor() {
     return (
         <div className="shader-editor">
             <div className="top-row">
-                <button onClick={onBack} title="Back"><i className="fas fa-arrow-left"/></button>
+                <Button onClick={onBack} title="Back"><i className="fas fa-arrow-left"/></Button>
                 <span className="name">{shader.name}</span>
                 <div className="editor-controls">
-                    <button onClick={onLoad} title="Load settings"><i className="fas fa-upload"/></button>
-                    <button onClick={onSave} title="Save settings"><i className="fas fa-save"/></button>
-                    <button onClick={onDownload} title="Download"><i className="fas fa-download"/></button>
+                    <Button onClick={onLoad} title="Load settings"><i className="fas fa-upload"/></Button>
+                    <Button onClick={onSave} title="Save settings"><i className="fas fa-save"/></Button>
+                    <Button onClick={onDownload} title="Download"><i className="fas fa-download"/></Button>
                 </div>
             </div>
             <div className="description">
@@ -121,8 +122,10 @@ function ShaderEditor() {
                 ))}
             </div>
             <span className="settings-title">Settings</span>
-            {shaderData.settings.map((setting, i) => <ShaderSetting key={i} data={setting} />)}
-            <button onClick={onDownload} className="download-button"><i className="fas fa-download" /> Download shader</button>
+            {shaderData.settings.map((setting, i) => <ShaderSetting key={i} data={setting}/>)}
+            <Button title="Download" onClick={onDownload} className="download-button">
+                <i className="fas fa-download"/> Download shader
+            </Button>
         </div>
     );
 }

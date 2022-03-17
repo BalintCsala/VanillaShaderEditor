@@ -30,3 +30,85 @@
 .sideloader .file {
     display: none;
 }
+
+.search {
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+.search input {
+    flex-grow: 1;
+    text-align: center;
+    background: var(--secondary-color);
+    color: white;
+    font-family: "Fredoka One", sans-serif;
+    font-size: 1.5rem;
+    border: 0;
+    position: relative;
+}
+
+.search input:focus {
+    outline: 1px solid var(--tertiary-color);
+}
+
+.tags {
+    width: 100%;
+    max-height: 0;
+    background: var(--secondary-color);
+    margin-bottom: 0;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.tags .description {
+    display: block;
+    height: 1.5em;
+}
+
+.tags .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tags.open {
+    height: auto;
+    max-height: 10em;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+}
+
+.tag {
+    background: var(--tertiary-color);
+    padding: 0.2em;
+    margin: 0.3em;
+    color: var(--text-color);
+    border: 0;
+    transition-duration: 0.3s;
+}
+
+.tag:hover {
+    background: var(--main-color);
+}
+
+.tag i {
+    opacity: 0.5;
+    margin: 0.2em;
+}
+
+.tag .light {
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin: 0.2em 0.2em 0.2em 0.6em;
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 1px;
+    box-sizing: border-box;
+}
+
+.tag .light.active {
+    background: var(--highlight-color);
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import "./DeveloperConfirm.css";
+import {Button} from "../common/Button/Button";
 
 interface Props {
     confirm: () => any;
@@ -19,8 +20,8 @@ function DeveloperConfirm({confirm, cancel}: Props) {
                     Do you wish to enable developer mode? This will let you test shaders.json files.
                 </span>
                 <div className="buttons">
-                    <button onClick={cancel} className="cancel-button">Cancel</button>
-                    <button onClick={confirm} className="confirm-button">Confirm</button>
+                    <Button onClick={cancel} className="cancel-button">Cancel</Button>
+                    <Button onClick={confirm} className="confirm-button">Confirm</Button>
                 </div>
             </div>
         </div>

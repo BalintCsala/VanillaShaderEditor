@@ -6,6 +6,7 @@ import Content from "./components/Content/Content";
 import HelpDialog from "./components/Content/HelpDialog/HelpDialog";
 import DeveloperConfirm from "./components/DeveloperConfirm/DeveloperConfirm";
 import {setDeveloper} from "./redux/developerSlice";
+import {Button} from "./components/common/Button/Button";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -38,12 +39,12 @@ function App() {
         <div className="app">
             <a href="/" className="page-title">Vanilla Shader Editor</a>
             <div className="page-controls">
-                {!developer ? <button onClick={onDeveloper} className="developer" title="developer">
+                {!developer ? <Button onClick={onDeveloper} className="developer" title="developer">
                     <i className="fas fa-wrench"/>
-                </button> : null}
-                <button onClick={onHelp} className={`help ${firstVisit ? "firstVisit" : ""}`} title="Help">
+                </Button> : null}
+                <Button onClick={onHelp} className={`help ${firstVisit ? "firstVisit" : ""}`} title="Help">
                     <i className="fas fa-question-circle"/>
-                </button>
+                </Button>
             </div>
             <hr/>
             <Content/>

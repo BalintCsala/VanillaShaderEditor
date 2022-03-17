@@ -12,18 +12,6 @@
     flex-grow: 1;
 }
 
-.shader-editor button {
-    display: block;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--highlight-color);
-    background: var(--tertiary-color);
-    border: 0;
-    transition-duration: 0.3s;
-}
-
 .shader-editor > .description {
     border: 1px solid var(--tertiary-color);
     margin-bottom: 0.5rem;
@@ -39,14 +27,6 @@
 
 .editor-controls {
     display: flex;
-}
-
-.editor-controls button {
-    margin-left: 0.4em;
-}
-
-.shader-editor button:hover {
-    background: var(--secondary-color);
 }
 
 .shader-editor .settings-title {

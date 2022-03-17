@@ -7,6 +7,7 @@ export interface JSONType {
     }];
 }
 
+
 export enum Format {
     ENUM = "enum",
     FLOAT = "float",
@@ -73,9 +74,16 @@ export interface ShaderData {
     longDescription?: string;
     thumbnail?: string;
     settings: Setting[];
+    tags: string[];
+}
+
+export interface Tag {
+    name: string;
+    description: string;
 }
 
 export interface ShaderDataLink {
     name: string;
+    tags: string[];
     settingsLink: string;
 }

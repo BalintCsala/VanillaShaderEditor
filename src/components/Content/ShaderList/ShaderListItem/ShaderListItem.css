@@ -47,7 +47,7 @@
     justify-content: space-between;
 }
 
-.shader-list-item a:not(.creator), .shader-list-item button {
+.shader-list-item a:not(.creator) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,6 +65,6 @@
     color: var(--highlight-color);
 }
 
-.shader-list-item a:hover, .shader-list-item button:hover {
+.shader-list-item a:hover {
     background: var(--secondary-color);
 }

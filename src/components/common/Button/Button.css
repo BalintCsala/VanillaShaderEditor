@@ -1,0 +1,14 @@
+.shader-editor-button {
+    font-size: 1.8rem;
+    background: var(--tertiary-color);
+    height: 2.5rem;
+    border: none;
+    color: var(--highlight-color);
+    transition-duration: 0.3s;
+    margin-left: 0.3em;
+    cursor: pointer;
+}
+
+.shader-editor-button:hover {
+    background: var(--secondary-color);
+}

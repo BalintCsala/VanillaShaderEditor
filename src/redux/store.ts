@@ -4,6 +4,7 @@ import {shaderListReducer} from "./shaderListSlice";
 import {loadingReducer} from "./loadingSlice";
 import {settingsReducer} from "./settingsSlice";
 import {developerReducer} from "./developerSlice";
+import {tagsReducer} from "./tagsSlice";
 
 const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
         shaderList: shaderListReducer,
         settings: settingsReducer,
         developer: developerReducer,
+        tags: tagsReducer,
     },
 });
 
