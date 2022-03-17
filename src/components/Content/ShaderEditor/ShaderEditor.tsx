@@ -3,7 +3,7 @@ import "./ShaderEditor.css";
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import ShaderSetting from "./ShaderSetting/ShaderSetting";
 import {collectZip, proxyFetch} from "../../../data/collectZip";
-import {settingApply} from "../../../data/settings";
+import {applyStringReplace, settingApply} from "../../../data/settings";
 import {saveAs} from "file-saver";
 import {endLoading, startLoading} from "../../../redux/loadingSlice";
 import {useNavigate, useParams} from "react-router-dom";
@@ -75,7 +75,6 @@ function ShaderEditor() {
                 return;
             fileReader.readAsText(file);
             fileReader.onload = e => {
-                console.log(e.target?.result);
                 dispatch(loadSettings(JSON.parse(e.target?.result as string)));
             };
         });
@@ -93,6 +92,10 @@ function ShaderEditor() {
         let zip = await collectZip(shaderData.url);
         for (let setting of shaderData.settings) {
             zip = await settingApply[setting.type](setting, values[setting.name], zip);
+        }
+
+        for (let stringReplace of shaderData.stringReplace ?? []) {
+            zip = await applyStringReplace(stringReplace, values, zip);
         }
 
         zip.generateAsync({type: "blob"})

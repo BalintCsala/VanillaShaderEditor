@@ -1,5 +1,5 @@
 import JSZip, {JSZipObject} from "jszip";
-import {Format, JSONType, Setting, Type} from "./types";
+import {Format, JSONType, Setting, StringReplace, Type} from "./types";
 
 const SHADERS_PATH = "assets/minecraft/shaders/";
 const CONST_REGEX = /^\s*const\s+(\S+)\s+(\S+)\s*=/;
@@ -123,4 +123,50 @@ export const settingApply = {
 
         return zip;
     },
+};
+
+const GROUP_REFERENCE_REGEX = /\$(\d+)/g;
+const INTERPOLATION_REGEX = /\${(.+)}/g;
+
+function interpretFormatString(str: string, data: StringReplace, execResult: RegExpExecArray, settings: {[key: string]: any}) {
+    return str
+        .replace(GROUP_REFERENCE_REGEX, (_, index) => execResult[parseInt(index)])
+        .replace(INTERPOLATION_REGEX, (_, variable) => {
+            let value = settings[variable];
+            if (!data.mapping || !data.mapping[variable])
+                return value;
+
+            return data.mapping[variable][value] ?? value;
+        });
+}
+
+export const applyStringReplace = async (data: StringReplace, settings: {[key: string]: any}, zip: JSZip) => {
+    let files: [string, JSZipObject][] = [];
+    zip.forEach((relativePath, file) => {
+        if (file.dir || /\.(vsh)|(fsh)|(glsl)/g.test(relativePath))
+            return;
+        files.push([relativePath, file]);
+    });
+
+    await Promise.all(files.map(async ([relativePath, file]) => {
+        let content = await file.async("string");
+        const regex = new RegExp(data.regex, "g");
+        let result: RegExpExecArray | null;
+
+        let changed = false;
+        while ((result = regex.exec(content)) !== null) {
+            changed = true;
+            content = content.substring(0, result.index) +
+                interpretFormatString(data.with, data, result, settings) +
+                content.substring(result.index + result[0].length);
+        }
+
+        if (changed) {
+            if (changed) {
+                zip.file(relativePath, content);
+            }
+        }
+    }));
+
+    return zip;
 };

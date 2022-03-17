@@ -13,7 +13,6 @@ function rgbToHex(color: number[]) {
 }
 
 function hexToRgb(hex: string) {
-    console.log(hex, [hex.substring(1, 3), hex.substring(3, 5), hex.substring(5, 7)]);
     return [hex.substring(1, 3), hex.substring(3, 5), hex.substring(5, 7)].map(channel => parseInt(channel, 16) / 255.0);
 }
 
