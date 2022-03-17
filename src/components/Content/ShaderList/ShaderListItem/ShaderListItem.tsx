@@ -26,7 +26,7 @@ function ShaderListItem({data}: Props) {
         fetch(settingsData.settingsLink ?? "")
             .then(response => response.json())
             .then(settings => {
-                dispatch(setShader(settings as ShaderData));
+                dispatch(setShader({...settings as ShaderData, tags: settingsData.tags}));
                 setIsDownloading(false);
             });
         setIsDownloading(true);

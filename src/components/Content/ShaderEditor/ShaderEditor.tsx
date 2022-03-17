@@ -40,7 +40,7 @@ function ShaderEditor() {
             const externalShaderData = shader as ShaderDataLink;
             proxyFetch(externalShaderData.settingsLink)
                 .then(res => res.json())
-                .then(shaderData => dispatch(setShader(shaderData)));
+                .then(shaderData => dispatch(setShader({...shaderData, tags: externalShaderData.tags})));
         }
 
         window.addEventListener("popstate", listener);
