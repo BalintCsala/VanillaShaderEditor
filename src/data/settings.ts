@@ -1,6 +1,5 @@
 import JSZip, {JSZipObject} from "jszip";
 import {Format, JSONType, Setting, StringReplace, Type} from "./types";
-import {tagsReducer} from "../redux/tagsSlice";
 
 const SHADERS_PATH = "assets/minecraft/shaders/";
 const CONST_REGEX = /^\s*const\s+(\S+)\s+(\S+)\s*=/;
