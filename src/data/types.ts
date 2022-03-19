@@ -74,6 +74,11 @@ export interface StringReplace {
     }
 }
 
+export interface FileFilter {
+    file: string;
+    condition: string;
+}
+
 export interface ShaderData {
     url: string;
     link?: string;
@@ -85,7 +90,8 @@ export interface ShaderData {
     thumbnail?: string;
     settings: Setting[];
     stringReplace?: StringReplace[];
-    tags: string[];
+    fileFilters?: FileFilter[];
+    tags?: string[];
 }
 
 export interface Tag {

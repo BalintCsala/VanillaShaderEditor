@@ -1,5 +1,6 @@
 import JSZip, {JSZipObject} from "jszip";
 import {Format, JSONType, Setting, StringReplace, Type} from "./types";
+import {tagsReducer} from "../redux/tagsSlice";
 
 const SHADERS_PATH = "assets/minecraft/shaders/";
 const CONST_REGEX = /^\s*const\s+(\S+)\s+(\S+)\s*=/;
@@ -73,7 +74,7 @@ export const settingApply = {
                     const name = match[1];
                     if (name === setting.name) {
                         if (setting.format === Format.BOOLEAN) {
-                            lines[i] = `${(value as boolean) ? ""  : "// "}#define ${name}`;
+                            lines[i] = `${(value as boolean) ? "" : "// "}#define ${name}`;
                         } else {
                             lines[i] = `#define ${name} ${serializeValue(setting.format, value)}`;
                         }
@@ -128,7 +129,7 @@ export const settingApply = {
 const GROUP_REFERENCE_REGEX = /\$(\d+)/g;
 const INTERPOLATION_REGEX = /\${(.+)}/g;
 
-function interpretFormatString(str: string, data: StringReplace, execResult: RegExpExecArray, settings: {[key: string]: any}) {
+function interpretFormatString(str: string, data: StringReplace, execResult: RegExpExecArray, settings: { [key: string]: any }) {
     return str
         .replace(GROUP_REFERENCE_REGEX, (_, index) => execResult[parseInt(index)])
         .replace(INTERPOLATION_REGEX, (_, variable) => {
@@ -140,7 +141,7 @@ function interpretFormatString(str: string, data: StringReplace, execResult: Reg
         });
 }
 
-export const applyStringReplace = async (data: StringReplace, settings: {[key: string]: any}, zip: JSZip) => {
+export const applyStringReplace = async (data: StringReplace, settings: { [key: string]: any }, zip: JSZip) => {
     let files: [string, JSZipObject][] = [];
     zip.forEach((relativePath, file) => {
         if (file.dir || /\.(vsh)|(fsh)|(glsl)/g.test(relativePath))

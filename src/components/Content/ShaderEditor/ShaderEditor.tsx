@@ -12,6 +12,7 @@ import Loader from "../../common/Loader/Loader";
 import {ShaderData, ShaderDataLink} from "../../../data/types";
 import {setShader} from "../../../redux/shaderListSlice";
 import {Button} from "../../common/Button/Button";
+import {evaluateBooleanExpression} from "../../../data/expression";
 
 function ShaderEditor() {
     const dispatch = useAppDispatch();
@@ -96,6 +97,13 @@ function ShaderEditor() {
 
         for (let stringReplace of shaderData.stringReplace ?? []) {
             zip = await applyStringReplace(stringReplace, values, zip);
+        }
+
+        for (let {file, condition} of shaderData.fileFilters ?? []) {
+            const result = evaluateBooleanExpression(condition, values);
+            if (!result) {
+                zip = zip.remove(file);
+            }
         }
 
         zip.generateAsync({type: "blob"})

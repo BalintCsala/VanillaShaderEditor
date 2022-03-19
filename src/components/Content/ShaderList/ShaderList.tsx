@@ -55,8 +55,8 @@ function ShaderList() {
                     {currentDescription}
                 </span>
                 <div className="list">
-                    {tags.map(tag => (
-                        <button className="tag" onClick={() => {
+                    {tags.map((tag, i) => (
+                        <button key={i} className="tag" onClick={() => {
                             if (selectedTags.indexOf(tag.name) !== -1) {
                                 setSelectedTags(selectedTags.filter(name => name !== tag.name));
                             } else {
